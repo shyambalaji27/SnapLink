@@ -1,5 +1,12 @@
 # ⚡ SnapLink — Link Reducer & URL Shortener
 
+[![GitHub Repo](https://img.shields.io/badge/GitHub-shyambalaji27%2FSnapLink-blue?logo=github)](https://github.com/shyambalaji27/SnapLink)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Node.js](https://img.shields.io/badge/Node.js-%3E%3D22.0.0-green.svg)](https://nodejs.org/)
+
+🔗 **GitHub Repository**: [https://github.com/shyambalaji27/SnapLink](https://github.com/shyambalaji27/SnapLink)  
+👤 **Author**: [Shyambalaji S (@shyambalaji27)](https://github.com/shyambalaji27)
+
 A high-performance, modern link reducer website built with **100% native Node.js** (`node:http`, `node:sqlite`, `node:crypto`). It requires **zero external npm packages**, stores data locally in SQLite with WAL mode, generates instant vector QR codes, and tracks real-time click statistics.
 
 ---
@@ -48,6 +55,29 @@ To run the built-in test suite (tests routing, auto-generated slugs, custom alia
 ```bash
 agy-node test.js
 ```
+
+---
+
+## 🌐 Free Cloud Hosting & Deployment
+
+You can host **SnapLink** online for free using any of the following platforms:
+
+### 1. Deploy on [Render.com](https://render.com) (Recommended)
+1. Sign in to [Render](https://render.com) with GitHub.
+2. Click **New +** → **Web Service** → select **[shyambalaji27/SnapLink](https://github.com/shyambalaji27/SnapLink)**.
+3. Settings:
+   - **Start Command**: `node server.js`
+   - **Build Command**: `echo 'Ready'`
+   - **Instance Type**: `Free`
+4. Add Environment Variable:
+   - `NODE_VERSION`: `22`
+5. Click **Deploy Web Service** to receive your public HTTPS link (e.g., `https://snaplink.onrender.com`).
+
+### 2. Deploy on [Railway.app](https://railway.com) (Persistent SQLite)
+1. Sign in to [Railway](https://railway.com) with GitHub.
+2. Click **New Project** → **Deploy from GitHub repo** → select **[shyambalaji27/SnapLink](https://github.com/shyambalaji27/SnapLink)**.
+3. Under **Settings** → **Networking**, click **Generate Domain** to get your public URL.
+4. *(Optional)* Add a Volume mounted at `/app/data` to persist your SQLite database across restarts.
 
 ---
 
