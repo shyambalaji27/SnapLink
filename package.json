@@ -1,0 +1,19 @@
+{
+  "name": "snaplink-url-shortener",
+  "version": "1.0.0",
+  "description": "A modern, zero-dependency URL Shortener & Link Reducer with analytics and QR code generation.",
+  "main": "server.js",
+  "scripts": {
+    "start": "agy-node server.js",
+    "test": "agy-node test.js"
+  },
+  "keywords": [
+    "url-shortener",
+    "link-reducer",
+    "sqlite",
+    "qrcode",
+    "analytics"
+  ],
+  "author": "",
+  "license": "MIT"
+}

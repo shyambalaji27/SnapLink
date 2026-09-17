@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SnapLink - Fast Link Reducer & URL Shortener</title>
+  <meta name="description" content="Reduce link sizes, track real-time click analytics, and generate instant QR codes with SnapLink.">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="bg-glow"></div>
+
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <a href="/" class="logo">
+        <div class="logo-icon">
+          <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-3.35l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+          </svg>
+        </div>
+        <span>SnapLink</span>
+      </a>
+
+      <div class="header-actions">
+        <button id="themeToggle" class="theme-toggle" title="Toggle Theme" aria-label="Toggle dark/light mode">
+          <svg id="themeIconSun" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none;">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg id="themeIconMoon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <main>
+      <section class="hero">
+        <div class="badge">
+          <span>⚡ Lightning Fast Link Reducer</span>
+        </div>
+        <h1>Shorten Links. <span class="gradient-text">Share Anywhere.</span></h1>
+        <p>Transform long, messy URLs into clean, compact links with instant QR codes and real-time click tracking.</p>
+      </section>
+
+      <!-- URL Shortener Form Box -->
+      <section class="shortener-box">
+        <form id="shortenForm">
+          <div class="input-group-main">
+            <div class="input-wrapper">
+              <span class="input-icon">
+                <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                </svg>
+              </span>
+              <input
+                type="url"
+                id="urlInput"
+                class="url-input"
+                placeholder="Paste your long link here (e.g., https://example.com/very/long/path)..."
+                required
+                autocomplete="off"
+                spellcheck="false"
+              />
+            </div>
+            <button type="submit" id="shortenBtn" class="btn-primary">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+              <span>Reduce Link</span>
+            </button>
+          </div>
+
+          <!-- Optional Custom Alias -->
+          <div class="options-row">
+            <label class="custom-slug-toggle">
+              <input type="checkbox" id="customSlugToggle">
+              <span>Customize link ending (custom alias)</span>
+            </label>
+            <span style="font-size: 0.85rem; color: var(--text-muted);">Instant redirection & QR Code ready</span>
+          </div>
+
+          <div id="customSlugContainer" class="custom-slug-container">
+            <div class="alias-input-wrapper">
+              <span id="aliasHostPrefix" class="alias-prefix">localhost:3000/</span>
+              <input
+                type="text"
+                id="customSlugInput"
+                class="alias-input"
+                placeholder="my-custom-slug"
+                maxlength="30"
+                pattern="[a-zA-Z0-9-_]+"
+              />
+            </div>
+            <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 6px;">
+              Use 2-30 characters: letters, numbers, hyphens, and underscores.
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <!-- Active Shortened Result Container -->
+      <section id="resultContainer" class="result-container" aria-live="polite">
+        <div class="result-header">
+          <div class="result-status">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            <span>Link successfully reduced!</span>
+          </div>
+          <div id="reductionBadge" class="reduction-badge">Saved 68% length</div>
+        </div>
+
+        <div class="result-main">
+          <a id="resultShortLink" href="#" target="_blank" rel="noopener noreferrer" class="short-url-link">
+            <span>https://...</span>
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+
+          <div class="result-actions">
+            <button id="copyResultBtn" class="btn-action">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span>Copy</span>
+            </button>
+            <button id="qrResultBtn" class="btn-action">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+              </svg>
+              <span>QR Code</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="original-preview">
+          <strong>Destination:</strong>
+          <span id="resultOriginalUrl">https://...</span>
+        </div>
+      </section>
+
+      <!-- Link Management & Analytics Dashboard -->
+      <section class="dashboard-section">
+        <div class="dashboard-header">
+          <div class="dashboard-title">
+            <span>Shortened Links</span>
+            <span id="linksCountBadge" class="count">0</span>
+          </div>
+
+          <div class="dashboard-controls">
+            <input
+              type="text"
+              id="searchInput"
+              class="search-input"
+              placeholder="Search links or slugs..."
+            />
+            <button id="refreshBtn" class="btn-icon" title="Refresh links list" aria-label="Refresh links">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table class="links-table">
+            <thead>
+              <tr>
+                <th>Short Link</th>
+                <th>Original URL</th>
+                <th>Clicks</th>
+                <th>Created</th>
+                <th style="text-align: right;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="linksTableBody">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+
+          <div id="emptyState" class="empty-state">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+            </svg>
+            <h3>No shortened links yet</h3>
+            <p>Paste a long URL in the box above to create your first reduced link!</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p>SnapLink &bull; Lightweight, high-performance link reducer &bull; Built with native Node.js and SQLite</p>
+    </footer>
+  </div>
+
+  <!-- QR Code Modal -->
+  <div id="qrModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="qrModalTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="qrModalTitle" class="modal-title">QR Code</h3>
+        <button id="closeQrModal" class="modal-close" aria-label="Close QR Modal">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div id="qrCodeContainer" class="qr-code-wrapper">
+        <!-- SVG injected here -->
+      </div>
+
+      <div id="qrTargetUrl" class="qr-target-url"></div>
+
+      <div style="display: flex; gap: 10px; justify-content: center;">
+        <button id="downloadQrBtn" class="btn-action">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+          </svg>
+          <span>Download SVG</span>
+        </button>
+        <button id="modalCopyBtn" class="btn-primary" style="padding: 10px 18px; font-size: 0.9rem;">
+          <span>Copy Link</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Toast Notifications -->
+  <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+  <!-- Scripts -->
+  <script src="/qr.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
