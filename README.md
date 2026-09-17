@@ -2,6 +2,10 @@
 
 > A simple and lightweight URL shortening application built with Node.js and SQLite.
 
+## 🌐 Live Demo
+
+🚀 **[https://snaplink-77hw.onrender.com/](https://snaplink-77hw.onrender.com/)**
+
 ---
 
 ## 📌 About
@@ -169,16 +173,6 @@ npm test
 
 ---
 
-## ☁️ Deployment
-
-SnapLink is deployed using **Render**.
-
-### Live Demo
-
-[https://snaplink-77hw.onrender.com/](https://snaplink-77hw.onrender.com/)
-
----
-
 ## 🔐 Security
 
 Possible production security improvements:
@@ -209,8 +203,6 @@ Possible production security improvements:
 
 ## 🎓 Use Cases
 
-SnapLink can be used for:
-
 * Academic projects
 * Presentations
 * Social media sharing
@@ -233,14 +225,6 @@ Cloud Security & Cybersecurity Enthusiast
 
 ---
 
-## 🌐 Live Application
-
-**🚀 SnapLink**
-
-[https://snaplink-77hw.onrender.com/](https://snaplink-77hw.onrender.com/)
-
----
-
 <p align="center">
   Built with Node.js, SQLite, HTML, CSS & JavaScript
 </p>
@@ -248,5 +232,3 @@ Cloud Security & Cybersecurity Enthusiast
 <p align="center">
   ⚡ <strong>SnapLink — Shorten. Share. Track.</strong>
 </p>
-
-Available next action: Create a downloadable DOCX file here in this chat containing the editable prose above
